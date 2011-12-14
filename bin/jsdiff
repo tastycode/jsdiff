@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+require "jsdiff"
+require "slop"
+
+opts = Slop.parse do
+  on :p, :"nosyntax", "Disable syntax highlighting" 
+end
+
+files = []
+opts.parse do |arg|
+  files << arg
+end
+
+puts JSDiff::parse(files.take(2), opts)
